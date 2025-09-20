@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const ctrl = require('../controllers/supplierController');
+const requireLogin = require('../middlewares/requireLogin');
 
 /**
  * @openapi
@@ -22,16 +23,17 @@ router.get('/', ctrl.index);
  *       200:
  *         description: OK
  */
-router.get('/api/list', async (req, res) => {
-  const Supplier = require('../models/Supplier');
-  const suppliers = await Supplier.find();
-  res.json(suppliers);
+router.get('/api/suppliers', async(req, res) => {
+    const Supplier = require('../models/Supplier');
+    const suppliers = await Supplier.find();
+    res.json(suppliers);
 });
 
-router.get('/new', ctrl.newForm);
-router.post('/', ctrl.create);
-router.get('/:id/edit', ctrl.editForm);
-router.put('/:id', ctrl.update);
-router.delete('/:id', ctrl.destroy);
+// ==== CRUD Views (cần đăng nhập) ====
+router.get('/new', requireLogin, ctrl.newForm);
+router.post('/', requireLogin, ctrl.create);
+router.get('/:id/edit', requireLogin, ctrl.editForm);
+router.put('/:id', requireLogin, ctrl.update);
+router.delete('/:id', requireLogin, ctrl.destroy);
 
 module.exports = router;

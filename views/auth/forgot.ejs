@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+    <h2>Forgot Password</h2>
+
+    <form method="POST" action="/users/forgot" class="mt-3" style="max-width:460px">
+        <div class="mb-3"><label class="form-label">Username</label><input class="form-control" name="username" required></div>
+        <button class="btn btn-warning">Get reset token</button>
+    </form>
+
+    <% if (sent) { %>
+        <div class="alert alert-info mt-3">
+            A reset token has been generated (demo): <code><%= token %></code>
+        </div>
+        <form method="POST" action="/users/reset" class="mt-3" style="max-width:460px">
+            <div class="mb-3"><label class="form-label">Username</label><input class="form-control" name="username" required></div>
+            <div class="mb-3"><label class="form-label">Token</label><input class="form-control" name="token" required></div>
+            <div class="mb-3"><label class="form-label">New password</label><input class="form-control" type="password" name="newPassword" required></div>
+            <button class="btn btn-primary">Reset password</button>
+        </form>
+        <% } %>
+
+            <%- include('../partials/footer') %>
