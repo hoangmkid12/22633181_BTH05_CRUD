@@ -45,5 +45,5 @@ CRUD Sản phẩm.
 Swagger API Docs: http://localhost:3000/api-docs
 
 👨‍💻 Tác giả
-Họ tên: Hoàng Mỹ
+Họ tên: Nguyễn Hoàng Mỹ / 
 MSSV: 22633181
