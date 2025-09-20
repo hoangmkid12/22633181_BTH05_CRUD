@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<h1 class="mb-4">Product Catalog</h1>
+
+<form class="row g-2 mb-3">
+  <div class="col-md-4">
+    <input class="form-control" type="text" placeholder="Search product name..." name="q" value="<%= q %>">
+  </div>
+  <div class="col-md-4">
+    <select class="form-select" name="supplier">
+      <option value="">-- Filter by supplier --</option>
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>" <%= selectedSupplier==String(s._id)?'selected':'' %>><%= s.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <button class="btn btn-primary" type="submit">Apply</button>
+    <a class="btn btn-outline-secondary" href="/">Clear</a>
+  </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-3 g-3">
+  <% products.forEach(p => { %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title"><%= p.name %></h5>
+          <p class="card-text mb-1">Price: $<%= p.price %></p>
+          <p class="card-text mb-1">Qty: <%= p.quantity %></p>
+          <p class="card-text"><small class="text-muted">Supplier: <%= p.supplierId?.name %></small></p>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>

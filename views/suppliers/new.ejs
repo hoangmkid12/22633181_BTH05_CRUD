@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<h2>New Supplier</h2>
+<form method="POST" action="/suppliers">
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input class="form-control" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Address</label>
+    <input class="form-control" name="address">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone</label>
+    <input class="form-control" name="phone">
+  </div>
+  <button class="btn btn-primary">Create</button>
+  <a href="/suppliers" class="btn btn-secondary">Cancel</a>
+</form>
+<%- include('../partials/footer') %>
